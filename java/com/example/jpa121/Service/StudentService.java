@@ -76,31 +76,14 @@ public void assignCoursesToStudent(Integer course_id,Integer student_id){
 /// (changing the major will drop all the cousres that the student attended to )
 
 
-//    public void changingMajor(Integer student_id,String major) {
-//        Student student = studentsRepository.findStudentById(student_id);
-//
-//        if (student == null) {
-//            throw new ApiException("Cannot found the Student");
-//        }
-//        student.getCourses().clear();
-//        student.setMajor(major);
-//
-//        studentsRepository.save(student);
-//
-//    }
 
-public void changeStudentMajor(Integer studentId, String newMajor) {
+public void changeStudentMajor(Integer id, String major) {
+    Student student = studentsRepository.findStudentById(id);
+    if (student == null)
+        throw new ApiException("Student with ID: " + id + " was not found");
 
-    Student student =studentsRepository.findStudentById(studentId);
-    if(student==null){
-        throw new ApiException("Cannot found the Student");
-    }
-    studentsRepository.deleteStudentCourses(studentId);
-
-
-    student.setMajor(newMajor);
-
-
+    student.setMajor(major);
+    student.setCourses(null);
     studentsRepository.save(student);
 }
 
