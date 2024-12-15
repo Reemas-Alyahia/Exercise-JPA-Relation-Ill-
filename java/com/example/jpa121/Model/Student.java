@@ -35,8 +35,10 @@ public class Student {
     private String major;
 
 
-    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "students")
-    private Set<Course>courses;
+ 
+    @ManyToMany
+    @JsonIgnore
+    private Set<Course> courses;
 
 
 }
