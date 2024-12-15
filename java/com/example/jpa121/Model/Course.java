@@ -30,8 +30,6 @@ public class Course {
     @JoinColumn(name = "teacher_id", referencedColumnName = "id")
     private Teacher teacher;
 
-
-    @ManyToMany
-    @JsonIgnore
-    private Set<Student>students;
+  @ManyToMany(mappedBy = "courses")
+    private Set<Student> students;
 }
